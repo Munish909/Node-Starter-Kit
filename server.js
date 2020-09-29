@@ -10,7 +10,7 @@ app.listen(9000, () => {
 });
 
 app.get("/", (req, res) => {
-    console.log("I am on");
+    // console.log("I am on");
     res.send("Welcome to Code your future");
 })
 
@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 
   app.get("/books/:bookId", (req, res) => {
       const reqBook = req.params.bookId;
-      console.log(reqBook);
+    //   console.log(reqBook);
       const book = bookshopData.find((book) => book.bookId === reqBook);
       res.send(book);
     });
@@ -49,7 +49,7 @@ app.get("/albums", (req, res) => {
 
     app.get("/albums/:albumId", (req, res) => {
         const reqAlbum = req.params.albumId;
-        console.log(reqAlbum);
+        // console.log(reqAlbum);
         const album = albumsData.find((album) => album.albumId === reqAlbum);
         res.send(album);
     });
