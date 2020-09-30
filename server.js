@@ -2,10 +2,10 @@ const express = require("express");
 const app = express();
 
 // const bodyParser = require("body-parser");/* after npm install body-parser, body-parser gets installed in express and thereafter we don't need body-parser and work with express instead */
-// app.use(bodyParser.json()); // before our routes definition
+// app.use(bodyParser.json()); /* before our routes definition */
 app.use(express.json()); /* Will inform our app to understand and deal with the json file  coming towards it*/
 
-app.listen(9000, () => {
+app.listen(3000, () => {
     console.log("Server is listening on port 3000. Ready to accept requests!");
 });
 
@@ -70,14 +70,54 @@ app.get("/albums", (req, res) => {
         res.send(albumToDelete.albumId);
     })
     
+    app.put("/albums/:albumId", (req, res) => {
+        const result = req.body;
+        // console.log(result);
+        const reqAlbumId = req.params.albumId;
+        // console.log("Require AlbumID", reqAlbumId);
+        const albumToUpdate = albumsData.findIndex(album => album.albumId === reqAlbumId);
+        albumsData[albumToUpdate] = result;
+        res.send(result);
+    });
 
+        
+    // albumToUpdate.artistName === reqUpdate.artistName;
+        // console.log("albumToUpdate", albumToUpdate)
+        // const reqUpdate = req.body;
+        // console.log("Require Update", reqUpdate);
+       
+    //     const albumToUpdateIndex = albumsData.indexOf(albumToUpdate);
+    //     albumsData[albumToUpdateIndex] = albumSelect;
+    //     res.send(albumToUpdate);
+    // });
 
+    // const found = albumsData.some(album => album.albumId === req.params.albumsId)
+    // if (found) {
+    //     const updateAlbum = req.body;
+    //     albumsData.forEach(album => {
+    //         if (album.albumId === req.params.albumsId) {
+    //             album.artistName = updateAlbum.artistName ? updateAlbum.artistName : album.artistName;
+    //         }
+    //         res.send({ msg: 'Album updated', album })
 
+    // if(albumToUpdate){
+    //             const albumSelect = req.body;
+    //             albumsData.forEach((album) => {
+    //             if (album.albumId === req.params.albumId){
+    //                 album.artistName === albumSelect.artistName
+    //             }
+    //             })
+    //             }
+                
+    //             res.send(albumToUpdate);
+               
+    //     })
+        
   const albumsData = [
     {
       albumId: "10",
-      artistName: "Beyoncé",
-      collectionName: "Lemonade",
+      artistName: "beyoncé",
+      collectionName: "lemonade",
       artworkUrl100:
         "http://is1.mzstatic.com/image/thumb/Music20/v4/23/c1/9e/23c19e53-783f-ae47-7212-03cc9998bd84/source/100x100bb.jpg",
       releaseDate: "2016-04-25T07:00:00Z",
@@ -87,8 +127,8 @@ app.get("/albums", (req, res) => {
     },
     {
       albumId: "11",
-      artistName: "Beyoncé",
-      collectionName: "Dangerously In Love",
+      artistName: "beyoncé",
+      collectionName: "dangerously In Love",
       artworkUrl100:
         "http://is1.mzstatic.com/image/thumb/Music/v4/18/93/6d/18936d85-8f6b-7597-87ef-62c4c5211298/source/100x100bb.jpg",
       releaseDate: "2003-06-24T07:00:00Z",
@@ -99,8 +139,8 @@ app.get("/albums", (req, res) => {
 
     {
         albumId: "12",
-        artistName: "Michael",
-        collectionName: "Informer",
+        artistName: "michael",
+        collectionName: "informer",
         artworkUrl100:
           "http://is1.mzstatic.com/image/thumb/Music/v4/18/93/6d/18936d85-8f6b-7597-87ef-62c4c5211298/source/100x100bb.jpg",
         releaseDate: "2003-06-24T07:00:00Z",
@@ -111,8 +151,8 @@ app.get("/albums", (req, res) => {
 
       {
         albumId: "13",
-        artistName: "JLO",
-        collectionName: "Brazil",
+        artistName: "jLO",
+        collectionName: "brazil",
         artworkUrl100:
           "http://is1.mzstatic.com/image/thumb/Music/v4/18/93/6d/18936d85-8f6b-7597-87ef-62c4c5211298/source/100x100bb.jpg",
         releaseDate: "2003-06-24T07:00:00Z",
@@ -123,8 +163,8 @@ app.get("/albums", (req, res) => {
 
       {
         albumId: "14",
-        artistName: "Gerorge M",
-        collectionName: "Sweet Love",
+        artistName: "gerorge M",
+        collectionName: "sweet Love",
         artworkUrl100:
           "http://is1.mzstatic.com/image/thumb/Music/v4/18/93/6d/18936d85-8f6b-7597-87ef-62c4c5211298/source/100x100bb.jpg",
         releaseDate: "2003-06-24T07:00:00Z",
